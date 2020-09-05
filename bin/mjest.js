@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const path = require('path');
-const { isEqual } = require('lodash');
+const assert = require('assert');
 
 function expect(actual) {
   return {
@@ -10,7 +10,9 @@ function expect(actual) {
       }
     },
     toEqual(expected) {
-      if (!isEqual(actual, expected)) {
+      try {
+        assert.deepStrictEqual(actual, expected);
+      } catch {
         throw new Error(`${JSON.stringify(actual)} is not equal to ${JSON.stringify(expected)}`);
       }
     },
@@ -19,7 +21,7 @@ function expect(actual) {
       try {
         actualCallTimes = actual.mock.calls.length;
         expect(actualCallTimes).toEqual(expected);
-      } catch (err) {
+      } catch {
         throw new Error(
           `expect function: ${
           actual.originImpl.toString()
@@ -34,7 +36,7 @@ function expect(actual) {
         actualCallArgs.forEach(callArgs => {
           expect(callArgs).toEqual(expectedArgs);
         });
-      } catch (err) {
+      } catch {
         throw new Error(
           `expect function: ${
           actual.originImpl.toString()
