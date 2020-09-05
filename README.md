@@ -462,8 +462,6 @@ $ mjest *.test.js
 ✓ subtractAsync subtracts numbers asynchronously
 ```
 
-本文的完整测试框架代码，笔者也已经放在 github 上，欢迎阅读：https://github.com/sulirc/mjest
-
 ## 更多
 
 到此为止，相信大家应该对测试框架原理基本有一定了解了。在 jest 中，还有比如 beforeEach、beforeAll 等钩子函数，大家也可以想办法自己实现。断言库里丰富的断言函数，也可以一个一个击破。
