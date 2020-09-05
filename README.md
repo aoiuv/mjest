@@ -230,6 +230,8 @@ const sumMockFn = jest.fn(sum);
 
 接下来只需要对返回的 sumMockFn 进行测试即可，本质上对 sumMockFn 的操作，都会透传到 sum 中。
 
+### 扩展断言函数
+
 所以我们还差什么？... 嗯对了。还有断言函数：
 
 ```js
@@ -454,6 +456,8 @@ $ mjest *.test.js
 ✓ sumAsync adds numbers asynchronously
 ✓ subtractAsync subtracts numbers asynchronously
 ```
+
+本文的完整测试框架代码，笔者也已经放在 github 上，欢迎阅读：https://github.com/sulirc/mjest
 
 ## 更多
 
