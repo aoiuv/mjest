@@ -68,14 +68,16 @@ global.jest = {
     mockFn.mock = { calls: [] };
     return mockFn;
   },
-  mock: (mockPath, mockExprts = {}) => {
-    const path = require.resolve(mockPath);
+  mock: (mockPath, mockExports = {}) => {
+    const path = require.resolve(mockPath, {
+      paths: ['.']
+    });
 
     require.cache[path] = {
       id: path,
       filename: path,
       loaded: true,
-      exports: mockExprts
+      exports: mockExports
     };
   }
 };
