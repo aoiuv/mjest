@@ -35,9 +35,7 @@
 
 ### 简介
 
-测试容器的作用是，自动运行所有测试，和对测试结果进行汇总。我们常见的使用方式一般如下：
-
-编写测试单元：
+测试容器最基本的作用是，自动运行所有测试，对测试结果进行数据汇总等。我们常见的使用方式一般如下，编写测试单元：
 
 ```js
 // ./math.test.js
@@ -56,7 +54,7 @@ test('subtractAsync subtracts numbers asynchronously', async () => {
 });
 ```
 
-math 函数如下：
+假设我们有 math 工具函数如下：
 
 ```js
 // ./math.js
@@ -71,6 +69,7 @@ module.exports = { sum, subtract, sumAsync, subtractAsync };
 我们用 jest 运行测试，在终端反馈汇总后的测试结果：
 
 ```bash
+$ jest
  PASS  ./math.test.js
   ✓ sumAsync adds numbers asynchronously (4ms)
   ✓ subtractAsync subtracts numbers asynchronously (1ms)
@@ -82,21 +81,21 @@ Time:        1.145s
 Ran all test suites.
 ```
 
-断言库一般使用如下：
+断言库一般形式如下：
 
 ```js
-// ...
 expect(result).toBe(expected);
 expect(func).toHaveBeenCalled();
 expect(func).toHaveBeenCalledTimes(1);
 expect(func).toHaveBeenCalledWith(arg1, arg2 /* ...args  */);
+// ...
 ```
 
-是不是看起来很语义化，见名知义。
+断言库是不是看起来很语义化~
 
 ### 测试容器实现示例
 
-测试容器最简单可以这么写，这里加上了 async/await 是为了处理异步逻辑。
+测试容器其实并不复杂，最简单的实现不过如下：
 
 ```js
 // ./test.js
@@ -111,9 +110,11 @@ async function test(title, callback) {
 }
 ```
 
+需要留意的是，这里加上了 async/await 是为了等待测试用例中的异步逻辑。
+
 ### 断言库实现示例
 
-我们写一个最简单的 expect(x).toBe(y) 的语法就是如下：
+断言库也没有黑魔法，我们写一个最简单的 expect(x).toBe(y) 的语法如下：
 
 ```js
 // ./expect.js
@@ -127,6 +128,8 @@ function expect(actual) {
   };
 }
 ```
+
+远比想象中简单，对不对~
 
 这里有个比较关键的地方是，断言函数里如果断言失败时，我们的选择是抛出一个错误，然后在测试容器中会 try/catch 捕获，同时打印错误堆栈。（在简单情况下，我们也可以使用 Node.js 自带的 assert 库进行断言）
 
@@ -386,7 +389,9 @@ $ node test-framework.js ./user.test.js
 
 完美解决~
 
-真实世界里的应用函数往往不会是干净可爱的纯函数，依赖大量第三方流行库进行开发是我们的日常，也是开源世界里一件幸福的事情。所以如何排除第三方依赖库进行测试，基本原理也是如上。
+真实世界里的应用函数往往不会是干净可爱的纯函数，依赖大量第三方流行库进行开发是我们的日常，也是开源世界里一件幸福的事情。
+
+如何排除第三方依赖库进行测试，基本原理也是如上。
 
 ## 让它更优雅
 
