@@ -18,7 +18,7 @@ test('sum should have been called once', () => {
   expect(sumMockFn).toHaveBeenCalledTimes(1);
 });
 
-test('sum should have been call with `3` `7`', () => {
+test('sum should have been called with `3` `7`', () => {
   const sumMockFn = jest.fn(sum);
   sumMockFn(3, 7);
   expect(sumMockFn).toHaveBeenCalledWith(3, 7);

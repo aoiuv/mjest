@@ -290,7 +290,7 @@ test('sum should have been called once', () => {
   expect(sumMockFn).toHaveBeenCalledTimes(1);
 });
 
-test('sum should have been call with `3` `7`', () => {
+test('sum should have been called with `3` `7`', () => {
   const sumMockFn = jest.fn(sum);
   sumMockFn(3, 7);
   expect(sum).toHaveBeenCalledWith(3, 7);
@@ -302,7 +302,7 @@ test('sum should have been call with `3` `7`', () => {
 ```bash
 $ node test-framework.js ./math.test.js
 ✓ sum should have been called once
-✓ sum should have been call with `3` `7`
+✓ sum should have been called with `3` `7`
 ```
 
 ## 模块
@@ -446,7 +446,7 @@ $ mjest ./user.test.js
 ```bash
 $ mjest ./math.test.js
 ✓ sum should have been called once
-✓ sum should have been call with `3` `7`
+✓ sum should have been called with `3` `7`
 ✓ sumAsync adds numbers asynchronously
 ✓ subtractAsync subtracts numbers asynchronously
 ```
@@ -456,7 +456,7 @@ $ mjest ./math.test.js
 ```bash
 $ mjest *.test.js
 ✓ sum should have been called once
-✓ sum should have been call with `3` `7`
+✓ sum should have been called with `3` `7`
 ✓ create an user with id
 ✓ sumAsync adds numbers asynchronously
 ✓ subtractAsync subtracts numbers asynchronously
