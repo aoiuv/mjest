@@ -1,6 +1,6 @@
 {
   "name": "mjest",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "mini jest implementation",
   "main": "index.js",
   "bin": {
